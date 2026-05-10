@@ -51,6 +51,7 @@ const projects = {
       "grafik/logo/New_Project_45.png",
       "grafik/logo/ytlogo.png",
       "grafik/logo/pklogo2.png",
+      "grafik/logo/shadowlogonice.png",
     ]
   },
 
