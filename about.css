@@ -263,3 +263,93 @@ html {
     grid-template-columns: 1fr;
   }
 }
+
+
+
+@media (max-width: 768px) {
+
+  /* ABOUT LAYOUT */
+  .about {
+    padding: 120px 6% 60px;
+  }
+
+  .about-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .about-image img {
+    width: 70%;
+    max-width: 260px;
+    margin: 0 auto;
+    display: block;
+    border-radius: 20px;
+  }
+
+  .about-text h1 {
+    font-size: 30px;
+    margin-bottom: 16px;
+  }
+
+  .about-text p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  /* TOOLS */
+  .tools {
+    padding: 80px 6%;
+  }
+
+  .tools-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .tool {
+    padding: 18px 14px;
+  }
+
+  .tool img {
+    width: 36px;
+  }
+
+  .tool h3 {
+    font-size: 14px;
+  }
+
+  .tool p {
+    font-size: 12px;
+  }
+
+  /* EXTRA SECTION */
+  .about-extra {
+    padding: 80px 6% 100px;
+  }
+
+  .extra-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .extra-grid div {
+    padding: 18px;
+  }
+
+  /* FOOTER FIX */
+  .footer {
+    padding: 50px 6% 30px;
+    margin-top: 80px;
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    text-align: center;
+  }
+
+  .footer-col::after {
+    display: none;
+  }
+}
