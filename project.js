@@ -18,7 +18,7 @@ const projects = {
       "slideshow/sdf.png",
       "slideshow/Sverige_Thumbnail.png",
       "slideshow/thumbnailo.png",
-      "slideshow/untitled-1aaa.png",
+      "slideshow/Untitled-1aaa.png",
       "slideshow/vega.png",
       "slideshow/rumthumbnail.png",
       "grafik/maxresdefault.png",
