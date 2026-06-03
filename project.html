@@ -2,6 +2,7 @@
 <html lang="da">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projekt - Alfred Soll</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="tools/navico.png">
@@ -10,7 +11,12 @@
 
 <header class="nav" id="nav">
     <div class="left">
-        <a href="index.html" class="brand">Alfred Soll</a>
+      <a href="index.html" class="brand">Alfred Soll</a>
+
+      <button class="hamburger"
+        onclick="document.querySelector('.center').classList.toggle('mobile-open')">
+        ☰
+      </button>
     </div>
 
     <div class="center">
