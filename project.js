@@ -28,6 +28,7 @@ const projects = {
       "grafik/sldhf.png",
       "slideshow/billede_2026-05-09_203111448.png",
       "slideshow/shadowmicthumbnails.png",
+      "grafik/forreder1.png",
     ]
   },
 
