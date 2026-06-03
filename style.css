@@ -1315,3 +1315,119 @@ body {
     transform: translateY(0);
   }
 }
+
+/* MOBILE FIXES */
+.hamburger{display:none;cursor:pointer;font-size:28px;border:none;background:none;}
+
+@media (max-width:768px){
+
+.nav{
+top:12px;
+width:95%;
+padding:14px 18px;
+border-radius:20px;
+flex-wrap:wrap;
+}
+
+.center{
+display:none;
+width:100%;
+flex-direction:column;
+gap:14px;
+padding-top:15px;
+}
+
+.center.mobile-open{
+display:flex;
+}
+
+.hamburger{
+display:block;
+}
+
+.left{
+display:flex;
+align-items:center;
+justify-content:space-between;
+width:100%;
+}
+
+.hero-card h1{
+font-size:42px;
+}
+
+.profile{
+width:140px;
+height:140px;
+}
+
+.services,
+.contact,
+.results,
+.process,
+.reviews{
+padding:80px 5%;
+}
+
+.projects,
+.services-grid,
+.grid,
+.project-gallery,
+.results-grid{
+grid-template-columns:1fr !important;
+gap:24px;
+}
+
+.project-card img{
+aspect-ratio:16/9;
+}
+
+.project-card h3{
+font-size:18px;
+}
+
+.project-card p{
+font-size:14px;
+}
+
+.service{
+padding:22px;
+}
+
+.footer {
+  margin-top: 60px;
+  padding: 40px 6% 20px;
+}
+
+.footer-inner{
+gap:20px;
+}
+
+.footer-col{
+text-align:center;
+}
+
+.footer-col::after{
+display:none !important;
+}
+}
+
+
+@media (max-width:768px){
+
+.work{
+display:none;
+}
+
+}
+
+
+@media (max-width: 768px) {
+  .project-hero {
+    height: 260px;
+    background-size: contain; /* vigtig ændring */
+    background-repeat: no-repeat;
+    background-color: #111; /* giver nice frame baggrund */
+    border-radius: 14px;
+  }
+}
