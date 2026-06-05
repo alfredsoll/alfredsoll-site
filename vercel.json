@@ -23,6 +23,9 @@
     {
       "source": "/legal/arbejdsregler",
       "destination": "/legal/work-rules.html"
-    }
+    },
+    { "source": "/thumbnails", "destination": "/project.html?type=thumbnails" },
+    { "source": "/logos", "destination": "/project.html?type=logos" },
+    { "source": "/banners", "destination": "/project.html?type=banners" }
   ]
 }
