@@ -11,6 +11,18 @@
     {
       "source": "/",
       "destination": "/index.html"
+    },
+    {
+      "source": "/handelsbetingelser",
+      "destination": "/legal/terms.html"
+    },
+    {
+      "source": "/privatlivspolitik",
+      "destination": "/legal/privacy.html"
+    },
+    {
+      "source": "/arbejdsregler",
+      "destination": "/legal/work-rules.html"
     }
   ]
 }
