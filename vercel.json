@@ -35,5 +35,6 @@
     {
       "source": "/banners",
       "destination": "/project.html?type=banners"
+    }
   ]
 }
