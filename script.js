@@ -123,3 +123,52 @@ document.querySelectorAll(".stars").forEach(el => {
 });
 
 
+
+const counters = document.querySelectorAll("[data-count]");
+let hasAnimated = false;
+
+function animateCounters() {
+  if (hasAnimated) return;
+
+  counters.forEach(counter => {
+    const target = +counter.dataset.count;
+    const hasPlus = counter.dataset.plus === "true";
+
+    let current = 0;
+
+    const duration = 1200;
+    const stepTime = Math.max(10, duration / target);
+
+    const update = () => {
+      current++;
+      counter.textContent = current;
+
+      if (current < target) {
+        setTimeout(update, stepTime);
+      } else {
+        counter.textContent = hasPlus ? target + "+" : target;
+      }
+    };
+
+    update();
+  });
+
+  hasAnimated = true;
+}
+
+// observer
+const resultsSection = document.querySelector(".results");
+
+if (resultsSection) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounters();
+      }
+    });
+  }, {
+    threshold: 0.4
+  });
+
+  observer.observe(resultsSection);
+}
