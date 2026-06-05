@@ -13,15 +13,15 @@
       "destination": "/index.html"
     },
     {
-      "source": "/handelsbetingelser",
+      "source": "/legal/handelsbetingelser",
       "destination": "/legal/terms.html"
     },
     {
-      "source": "/privatlivspolitik",
+      "source": "/legal/privatlivspolitik",
       "destination": "/legal/privacy.html"
     },
     {
-      "source": "/arbejdsregler",
+      "source": "/legal/arbejdsregler",
       "destination": "/legal/work-rules.html"
     }
   ]
