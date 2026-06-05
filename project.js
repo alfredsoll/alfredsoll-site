@@ -1,6 +1,6 @@
 // Hent type fra URL
-const path = window.location.pathname.replace("/", "");
-const type = path;
+const params = new URLSearchParams(window.location.search);
+const type = params.get("type");
 
 // DATA (du kan udvide senere)
 const projects = {
