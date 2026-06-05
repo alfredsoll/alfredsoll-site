@@ -34,6 +34,7 @@ const projects = {
       "slideshow/livefroggy.png",
       "slideshow/forædder2.png",
       "slideshow/supereasy.png",
+      "slideshow/dyr.png",
     ]
   },
 
