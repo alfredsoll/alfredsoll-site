@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {
+      "source": "/arbejde",
+      "destination": "/work.html"
+    },
+    {
+      "source": "/om-mig",
+      "destination": "/about.html"
+    },
+    {
+      "source": "/",
+      "destination": "/index.html"
+    }
+  ]
+}
