@@ -1431,3 +1431,136 @@ display:none;
     border-radius: 14px;
   }
 }
+
+
+.floating-contact {
+  position: fixed;
+  right: 40px;
+  bottom: 90px;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 14px 18px;
+
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(20px);
+
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 999px;
+
+  text-decoration: none;
+  color: #111;
+
+  box-shadow:
+    0 20px 50px rgba(0,0,0,0.08),
+    0 5px 15px rgba(0,0,0,0.04);
+
+  transition: all .35s cubic-bezier(.22,1,.36,1);
+
+  animation: floating 4s ease-in-out infinite;
+}
+
+.floating-contact:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    0 30px 70px rgba(0,0,0,0.12),
+    0 10px 25px rgba(0,0,0,0.08);
+}
+
+.floating-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+
+  background: #5865F2;
+
+  animation: pulse 2s infinite;
+}
+
+.floating-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.floating-text span {
+  font-size: 11px;
+  color: #888;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.floating-text strong {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.floating-arrow {
+  font-size: 18px;
+  transition: transform .3s ease;
+}
+
+.floating-contact:hover .floating-arrow {
+  transform: translateX(4px);
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(88,101,242,0.5);
+  }
+
+  70% {
+    box-shadow: 0 0 0 12px rgba(88,101,242,0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(88,101,242,0);
+  }
+}
+
+@media (max-width: 768px) {
+
+  .floating-contact {
+    right: 14px;
+    bottom: 35px;
+
+    padding: 12px 14px;
+    gap: 10px;
+  }
+
+  .floating-text span {
+    font-size: 10px;
+  }
+
+  .floating-text strong {
+    font-size: 13px;
+  }
+
+}
+
+@keyframes floating {
+
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+
+}
+
+
+.results h3 {
+  font-size: 38px;
+  font-weight: 700;
+  transition: 0.3s;
+}
+
