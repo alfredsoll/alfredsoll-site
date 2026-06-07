@@ -36,6 +36,7 @@ const projects = {
       "slideshow/supereasy.png",
       "slideshow/dyr.png",
       "slideshow/onrblock.png",
+      "slideshow/skibidisigma.png",
     ]
   },
 
