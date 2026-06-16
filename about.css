@@ -376,3 +376,25 @@ html {
   background: rgba(0,0,0,0.15);
   transform: scale(1.05);
 }
+
+.hidden-letter{
+  display: inline-block;
+
+  font-size: 16px;
+  font-weight: 800;
+
+  color: rgba(0,0,0,0.75);
+  background: rgba(0,0,0,0.08);
+
+  padding: 3px 7px;
+  border-radius: 6px;
+
+  cursor: pointer;
+  user-select: none;
+
+  transition: 0.15s ease;
+}
+.hidden-letter:hover{
+  background: rgba(0,0,0,0.15);
+  transform: scale(1.05);
+}
