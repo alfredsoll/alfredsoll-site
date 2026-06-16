@@ -118,7 +118,7 @@
             <p class="bio">
             Jeg laver primært minecraft grafik, men kvalificerer mig også inden for andet slags grafik. 
             </p>
-
+            <span class="hidden-letter">H</span>
         </div>
 
     </section>
@@ -527,5 +527,61 @@ Det er ekstremt god kunde service osv, PISSE gode priser! Du får lige det du be
   </div>
 
 </a>
+
+  <div id="birthdayPopup" class="birthday-popup">
+
+  <div class="birthday-card" id="birthdayCard">
+
+    <button class="birthday-close" onclick="closeBirthdayPopup()">
+      ✕
+    </button>
+
+    <div class="birthday-badge">🎂 Annual Event</div>
+
+    <h2>Birthday Hunt is live</h2>
+
+    <p>
+      Det er min fødselsdag i dag.
+      Jeg har gemt et hemmeligt kodeord rundt omkring på siden.
+    </p>
+
+    <p class="muted">
+      Find alle bogstaver → lås op for rabat + Discord reward.
+    </p>
+
+    <div class="hunt">
+
+  <h3>Birthday Hunt</h3>
+  <p class="muted">Find bogstaverne rundt på siden</p>
+
+  <div class="code-input" id="codeBoxes">
+    <input maxlength="1" />
+    <input maxlength="1" />
+    <input maxlength="1" />
+    <input maxlength="1" />
+    <input maxlength="1" />
+    <input maxlength="1" />
+    <input maxlength="1" />
+    <input maxlength="1" />
+  </div>
+
+  <button onclick="checkCode()">Lås op</button>
+
+  <div id="rewardBox"></div>
+  <div class="birthday-actions">
+    <a href="https://discord.gg/ZH2q6Wcyma" target="_blank">Join Discord</a>
+  </div>
+</div>
+    
+
+  </div>
+
+</div>
+
+<div id="guideArrow"></div>
+
+<button id="birthdayReopen" onclick="openBirthdayPopup()">
+  🎂 Event
+</button>
 </body>
 </html>
