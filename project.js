@@ -81,6 +81,7 @@ const projects = {
       "grafik/bannere/image.png",
       "grafik/bannere/New_Project_67.png",
       "grafik/bannere/TierrG_Banner.png",
+      "grafik/bannere/jestrobanner.png",
     ]
   }
 };
