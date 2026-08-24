@@ -133,7 +133,6 @@ function animateCounters() {
   counters.forEach(counter => {
     const target = +counter.dataset.count;
     const hasPlus = counter.dataset.plus === "true";
-    const hasStar = counter.dataset.star === "true";
 
     let current = 0;
 
@@ -142,31 +141,12 @@ function animateCounters() {
 
     const update = () => {
       current++;
-
-      let displayValue = current;
-
-      // + på Designs lavet
-      if (hasPlus && current >= target) {
-        displayValue = target + "+";
-      }
-
-      // ★ på Kundetilfredshed
-      if (hasStar) {
-        displayValue = "★ " + current;
-      }
-
-      counter.textContent = displayValue;
+      counter.textContent = current;
 
       if (current < target) {
         setTimeout(update, stepTime);
       } else {
-        if (hasStar) {
-          counter.textContent = "★ " + target;
-        } else if (hasPlus) {
-          counter.textContent = target + "+";
-        } else {
-          counter.textContent = target;
-        }
+        counter.textContent = hasPlus ? target + "+" : target;
       }
     };
 
@@ -175,24 +155,6 @@ function animateCounters() {
 
   hasAnimated = true;
 }
-
-// observer
-const resultsSection = document.querySelector(".results");
-
-if (resultsSection) {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        animateCounters();
-      }
-    });
-  }, {
-    threshold: 0.4
-  });
-
-  observer.observe(resultsSection);
-}
-
 
 // observer
 const resultsSection = document.querySelector(".results");
