@@ -101,8 +101,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.move = move;
 
+  
   setPosition(false);
+
+  // SWIPE PÅ MOBIL
+  let touchStartX = 0;
+  let touchStartY = 0;
+
+  track.addEventListener("touchstart", (e) => {
+    if (e.touches.length !== 1) return;
+
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  track.addEventListener("touchend", (e) => {
+    if (!e.changedTouches.length) return;
+
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
+
+    const diffX = touchEndX - touchStartX;
+    const diffY = touchEndY - touchStartY;
+
+    // Undgå at skifte review ved almindelig scrolling
+    if (
+      Math.abs(diffX) > 45 &&
+      Math.abs(diffX) > Math.abs(diffY) * 1.3
+    ) {
+      if (diffX < 0) {
+        move(1);  // Næste review
+      } else {
+        move(-1); // Forrige review
+      }
+    }
+  }, { passive: true });
+
 });
+
 
 
 const starSVG = (filled) => `
