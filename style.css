@@ -1895,3 +1895,15 @@ display:none;
   background: rgba(0,0,0,0.15);
   transform: scale(1.05);
 }
+
+
+/* Mobilvenlig swipe på reviews */
+.reviews .track {
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.reviews .review-card img {
+  -webkit-user-drag: none;
+}
