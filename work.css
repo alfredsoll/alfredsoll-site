@@ -16,11 +16,13 @@
 
 
 .card {
-  height: 220px;
+  height: 280px;
   border-radius: 18px;
   background: #f5f5f5;
   transition: 0.3s;
+  overflow: hidden;
 }
+
 
 .card:hover {
   transform: scale(1.03);
