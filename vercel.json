@@ -35,6 +35,10 @@
     {
       "source": "/banners",
       "destination": "/project.html?type=banners"
+    },
+    {
+      "source": "/editing",
+      "destination": "/project.html?type=editing"
     }
   ]
 }
