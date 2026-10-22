@@ -85,17 +85,17 @@ const projects = {
       "grafik/bannere/jestrobanner.png",
     ]
   },
-  editing: {
-  title: "Editing Portfolio",
-  meta: "Video Editing • Content Creation",
-  desc: "Video redigering, jeg har arbejdet med gennem tiden.",
-  hero: "editing/hero.png",
-  images: [
-    "editing/edit1.png",
-    "editing/edit2.png",
-    "editing/edit3.png"
-  ]
-},
+    editing: {
+    title: "Editing",
+    meta: "Video Editing",
+    desc: "Et udvalg af mine redigeringsprojekter.",
+    hero: "editing/thumbnails/edit1.jpg",
+    images: [
+      "editing/videos/edit1.mp4",
+      "editing/videos/edit2.mp4",
+      "editing/videos/edit3.mp4"
+    ]
+  }
 };
 
 // fallback hvis type mangler
