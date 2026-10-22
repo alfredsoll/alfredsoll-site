@@ -179,34 +179,11 @@ data.images.forEach(src => {
     wrap.appendChild(video);
 
   } else {
-    if (type === "editing") {
-  const video = document.createElement("video");
-
-  video.src = src;
-  video.muted = true;
-  video.loop = true;
-  video.playsInline = true;
-  video.preload = "metadata";
-
-  wrap.addEventListener("mouseenter", () => {
-    video.play().catch(() => {});
-  });
-
-  wrap.addEventListener("mouseleave", () => {
-    video.pause();
-    video.currentTime = 0;
-  });
-
-  wrap.appendChild(video);
-} else {
-  const img = document.createElement("img");
-  img.src = src;
-  img.alt = data.title;
-
-  wrap.appendChild(img);
-}
-
-gallery.appendChild(wrap);
+    const img = document.createElement("img");
+    img.src = src;
+    
+    wrap.appendChild(img);
+    gallery.appendChild(wrap);
 });
 
 
