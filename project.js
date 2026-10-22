@@ -91,9 +91,7 @@ const projects = {
     desc: "Et udvalg af mine redigeringsprojekter.",
     hero: "editing/thumbnails/edit1.jpg",
     images: [
-      "editing/videos/edit1.mp4",
-      "editing/videos/edit2.mp4",
-      "editing/videos/edit3.mp4"
+      "editing/videos/alfredsolldk.mp4"
     ]
   }
 };
