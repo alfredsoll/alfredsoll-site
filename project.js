@@ -1,8 +1,7 @@
-// Hent type fra URL
+
 const params = new URLSearchParams(window.location.search);
 const type = params.get("type") || window.location.pathname.slice(1);
 
-// DATA (du kan udvide senere)
 const projects = {
   thumbnails: {
     title: "Thumbnails",
@@ -36,7 +35,7 @@ const projects = {
       "slideshow/supereasy.png",
       "slideshow/dyr.png",
       "slideshow/onrblock.png",
-      "slideshow/skibidisigma.png",
+      "slideshow/skibidisigma.png"
     ]
   },
 
@@ -61,7 +60,7 @@ const projects = {
       "grafik/logo/ytlogo.png",
       "grafik/logo/pklogo2.png",
       "grafik/logo/shadowlogonice.png",
-      "grafik/logo/sdfe.png",
+      "grafik/logo/sdfe.png"
     ]
   },
 
@@ -82,10 +81,11 @@ const projects = {
       "grafik/bannere/image.png",
       "grafik/bannere/New_Project_67.png",
       "grafik/bannere/TierrG_Banner.png",
-      "grafik/bannere/jestrobanner.png",
+      "grafik/bannere/jestrobanner.png"
     ]
   },
-    editing: {
+
+  editing: {
     title: "Videoredigering",
     meta: "Video Editing",
     desc: "Et udvalg af mine redigeringsprojekter.",
@@ -96,122 +96,77 @@ const projects = {
   }
 };
 
-// fallback hvis type mangler
-if (!type || !projects[type]) {
-  document.getElementById("title").innerText = "Projekt ikke fundet";
-} else {
+const titleEl = document.getElementById("title");
+const metaEl = document.getElementById("meta");
+const descEl = document.getElementById("desc");
+const hero = document.getElementById("hero");
+const gallery = document.getElementById("gallery");
 
+if (!type || !projects[type]) {
+  if (titleEl) titleEl.innerText = "Projekt ikke fundet";
+} else {
   const data = projects[type];
 
-  // indsæt tekst
-  document.getElementById("title").innerText = data.title;
-  document.getElementById("meta").innerText = data.meta;
-  document.getElementById("desc").innerText = data.desc;
+  if (titleEl) titleEl.innerText = data.title;
+  if (metaEl) metaEl.innerText = data.meta;
+  if (descEl) descEl.innerText = data.desc;
 
-  // hero billede
-  const hero = document.getElementById("hero");
-  hero.style.background = `url(${data.hero}) center/cover`;
-
-  // gallery
-  const gallery = document.getElementById("gallery");
-
-  
-
-data.images.forEach(src => {
-  const wrap = document.createElement("div");
-  wrap.className = "img-wrap";
-
-  
-  if (type === "editing" && src.toLowerCase().endsWith(".mp4")) {
-    const video = document.createElement("video");
-
-    video.src = src.startsWith("/") ? src : "/" + src;
-    video.poster = "/editing/thumbnails/edit1.jpg";
-    video.autoplay = true;
-    video.muted = true;
-    video.loop = true;
-    video.playsInline = true;
-    video.preload = "auto";
-
-    video.addEventListener("loadeddata", () => {
-      video.currentTime = 0;
-    }, { once: true });
-
-    video.play().catch(() => {});
-
-    wrap.addEventListener("click", () => {
-      const player = document.createElement("div");
-      player.className = "video-overlay";
-
-      const fullVideo = document.createElement("video");
-      fullVideo.src = video.src;
-      fullVideo.controls = true;
-      fullVideo.autoplay = true;
-      fullVideo.playsInline = true;
-
-      const close = document.createElement("button");
-      close.className = "video-close";
-      close.textContent = "✕";
-
-      function closePlayer() {
-        fullVideo.pause();
-        player.remove();
-        document.removeEventListener("keydown", onKey);
-      }
-
-      function onKey(e) {
-        if (e.key === "Escape") closePlayer();
-      }
-
-      close.addEventListener("click", closePlayer);
-
-      player.addEventListener("click", e => {
-        if (e.target === player) closePlayer();
-      });
-
-      document.addEventListener("keydown", onKey);
-      player.append(close, fullVideo);
-      document.body.appendChild(player);
-    });
-
-    wrap.appendChild(video);
-  } else {
-    const img = document.createElement("img");
-    img.src = src;
-    img.alt = data.title;
-    wrap.appendChild(img);
+  if (hero) {
+    hero.style.backgroundImage = `url("${data.hero}")`;
+    hero.style.backgroundPosition = "center";
+    hero.style.backgroundSize = "cover";
   }
 
-  gallery.appendChild(wrap);
+  if (gallery) {
+    gallery.innerHTML = "";
 
+    data.images.forEach(src => {
+      const wrap = document.createElement("div");
+      wrap.className = "img-wrap";
 
-} // Lukker else-blokken
+      if (type === "editing" && src.toLowerCase().endsWith(".mp4")) {
+        const video = document.createElement("video");
+        video.src = "/" + src.replace(/^\/+/, "");
+        video.poster = "/editing/thumbnails/edit1.jpg";
+        video.muted = true;
+        video.loop = true;
+        video.playsInline = true;
+        video.preload = "auto";
+        video.controls = true;
+
+        video.addEventListener("loadeddata", () => {
+          video.currentTime = 0;
+        }, { once: true });
+
+        wrap.addEventListener("click", () => {
+          if (video.paused) {
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        });
+
+        wrap.appendChild(video);
+      } else {
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = data.title;
+        wrap.appendChild(img);
+      }
+
+      gallery.appendChild(wrap);
+    });
+  }
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   const nav = document.getElementById("nav");
-
   if (!nav) return;
 
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 50) {
-      nav.classList.add("scrolled");
-    } else {
-      nav.classList.remove("scrolled");
-    }
-  });
-});
+  const updateNav = () => {
+    nav.classList.toggle("scrolled", window.scrollY > 50);
+  };
 
-
-
-
-document.addEventListener("DOMContentLoaded", () => {
-  const nav = document.getElementById("nav");
-
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 50) {
-      nav.classList.add("scrolled");
-    } else {
-      nav.classList.remove("scrolled");
-    }
-  });
+  window.addEventListener("scroll", updateNav);
+  updateNav();
 });
