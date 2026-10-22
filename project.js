@@ -117,16 +117,79 @@ if (!type || !projects[type]) {
   // gallery
   const gallery = document.getElementById("gallery");
 
-  data.images.forEach(src => {
-    const wrap = document.createElement("div");
-    wrap.className = "img-wrap";
+  
+data.images.forEach(src => {
+  const wrap = document.createElement("div");
+  wrap.className = "img-wrap";
 
+  if (type === "editing") {
+    const video = document.createElement("video");
+    video.src = src;
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.preload = "metadata";
+
+    // Afspil preview, når musen holdes over videoen
+    wrap.addEventListener("mouseenter", () => {
+      video.play().catch(() => {});
+    });
+
+    // Stop preview, når musen forlader videoen
+    wrap.addEventListener("mouseleave", () => {
+      video.pause();
+      video.currentTime = 0;
+    });
+
+    // Klik for at åbne videoen i en stor afspiller
+    wrap.addEventListener("click", () => {
+      const player = document.createElement("div");
+      player.className = "video-overlay";
+
+      const fullVideo = document.createElement("video");
+      fullVideo.src = src;
+      fullVideo.controls = true;
+      fullVideo.autoplay = true;
+      fullVideo.playsInline = true;
+
+      const close = document.createElement("button");
+      close.className = "video-close";
+      close.textContent = "✕";
+
+      function closePlayer() {
+        fullVideo.pause();
+        player.remove();
+        document.removeEventListener("keydown", onKey);
+      }
+
+      function onKey(e) {
+        if (e.key === "Escape") closePlayer();
+      }
+
+      close.addEventListener("click", closePlayer);
+
+      player.addEventListener("click", e => {
+        if (e.target === player) closePlayer();
+      });
+
+      document.addEventListener("keydown", onKey);
+
+      player.append(close, fullVideo);
+      document.body.appendChild(player);
+    });
+
+    wrap.appendChild(video);
+
+  } else {
     const img = document.createElement("img");
     img.src = src;
-
+    img.alt = data.title;
     wrap.appendChild(img);
-    gallery.appendChild(wrap);
-  });
+  }
+
+  gallery.appendChild(wrap);
+});
+
 
 }
 
