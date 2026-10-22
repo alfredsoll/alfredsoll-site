@@ -1,6 +1,6 @@
 // Hent type fra URL
-const path = window.location.pathname.slice(1);
-const type = path;
+const params = new URLSearchParams(window.location.search);
+const type = params.get("type") || window.location.pathname.slice(1);
 
 // DATA (du kan udvide senere)
 const projects = {
@@ -116,11 +116,12 @@ if (!type || !projects[type]) {
   const gallery = document.getElementById("gallery");
 
   
+
 data.images.forEach(src => {
   const wrap = document.createElement("div");
   wrap.className = "img-wrap";
 
-  if (type === "editing") {
+  if (type === "editing" && src.toLowerCase().endsWith(".mp4")) {
     const video = document.createElement("video");
     video.src = src;
     video.muted = true;
@@ -128,18 +129,15 @@ data.images.forEach(src => {
     video.playsInline = true;
     video.preload = "metadata";
 
-    // Afspil preview, når musen holdes over videoen
     wrap.addEventListener("mouseenter", () => {
       video.play().catch(() => {});
     });
 
-    // Stop preview, når musen forlader videoen
     wrap.addEventListener("mouseleave", () => {
       video.pause();
       video.currentTime = 0;
     });
 
-    // Klik for at åbne videoen i en stor afspiller
     wrap.addEventListener("click", () => {
       const player = document.createElement("div");
       player.className = "video-overlay";
@@ -177,17 +175,16 @@ data.images.forEach(src => {
     });
 
     wrap.appendChild(video);
-
   } else {
     const img = document.createElement("img");
     img.src = src;
-    
+    img.alt = data.title;
     wrap.appendChild(img);
-    gallery.appendChild(wrap);
+  }
+
+  gallery.appendChild(wrap);
 });
 
-
-}
 
 
 document.addEventListener("DOMContentLoaded", () => {
