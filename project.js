@@ -86,7 +86,7 @@ const projects = {
     ]
   },
     editing: {
-    title: "Editing",
+    title: "Videoredigering",
     meta: "Video Editing",
     desc: "Et udvalg af mine redigeringsprojekter.",
     hero: "editing/thumbnails/edit1.jpg",
