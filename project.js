@@ -121,29 +121,30 @@ data.images.forEach(src => {
   const wrap = document.createElement("div");
   wrap.className = "img-wrap";
 
+  
   if (type === "editing" && src.toLowerCase().endsWith(".mp4")) {
     const video = document.createElement("video");
-    video.src = src;
+
+    video.src = src.startsWith("/") ? src : "/" + src;
+    video.poster = "/editing/thumbnails/edit1.jpg";
+    video.autoplay = true;
     video.muted = true;
     video.loop = true;
     video.playsInline = true;
-    video.preload = "metadata";
+    video.preload = "auto";
 
-    wrap.addEventListener("mouseenter", () => {
-      video.play().catch(() => {});
-    });
-
-    wrap.addEventListener("mouseleave", () => {
-      video.pause();
+    video.addEventListener("loadeddata", () => {
       video.currentTime = 0;
-    });
+    }, { once: true });
+
+    video.play().catch(() => {});
 
     wrap.addEventListener("click", () => {
       const player = document.createElement("div");
       player.className = "video-overlay";
 
       const fullVideo = document.createElement("video");
-      fullVideo.src = src;
+      fullVideo.src = video.src;
       fullVideo.controls = true;
       fullVideo.autoplay = true;
       fullVideo.playsInline = true;
@@ -169,7 +170,6 @@ data.images.forEach(src => {
       });
 
       document.addEventListener("keydown", onKey);
-
       player.append(close, fullVideo);
       document.body.appendChild(player);
     });
@@ -182,9 +182,8 @@ data.images.forEach(src => {
     wrap.appendChild(img);
   }
 
-  
   gallery.appendChild(wrap);
-  });
+
 
 } // Lukker else-blokken
 
