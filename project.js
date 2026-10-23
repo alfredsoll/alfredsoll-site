@@ -91,7 +91,7 @@ const projects = {
     desc: "Et udvalg af mine redigeringsprojekter.",
     hero: "billeder/editing.png",
     images: [
-      "youtube:C2MUuaK8dR8"
+      "youtube:C2MUuaK8dR8",
       "youtube:qPvyxJdKbxA"
     ]
   }
