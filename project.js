@@ -128,9 +128,10 @@ if (!type || !projects[type]) {
         const videoId = src.substring("youtube:".length);
 
         const img = document.createElement("img");
-        img.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+        img.src = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
         img.alt = data.title;
         img.loading = "lazy";
+        wrap.classList.add("youtube-wrap");
         wrap.appendChild(img);
 
         // Vis en play-knap oven på previewet
