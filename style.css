@@ -1984,3 +1984,21 @@ display:none;
   font-size:32px;
   cursor:pointer;
 }
+
+/* YouTube-preview: præcis 16:9 uden ekstra plads */
+.img-wrap.youtube-wrap {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  overflow: hidden;
+  background: transparent;
+  border-radius: 12px;
+}
+
+.img-wrap.youtube-wrap img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
