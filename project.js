@@ -92,7 +92,6 @@ const projects = {
     hero: "billeder/editing.png",
     images: [
       "youtube:C2MUuaK8dR8"
-      
     ]
   }
 };
@@ -125,56 +124,66 @@ if (!type || !projects[type]) {
       const wrap = document.createElement("div");
       wrap.className = "img-wrap";
 
-      
-if (type === "editing" && src.startsWith("youtube:")) {
-  const videoId = src.replace("youtube:", "");
+      if (type === "editing" && src.startsWith("youtube:")) {
+        const videoId = src.substring("youtube:".length);
 
-  const img = document.createElement("img");
-  img.src = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-  img.alt = "YouTube preview";
+        const img = document.createElement("img");
+        img.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+        img.alt = data.title;
+        img.loading = "lazy";
+        wrap.appendChild(img);
 
-  // Fallback hvis maxres ikke findes
-  img.onerror = () => {
-    img.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-  };
+        // Vis en play-knap oven på previewet
+        const playButton = document.createElement("div");
+        playButton.className = "youtube-play-button";
+        playButton.textContent = "▶";
+        wrap.appendChild(playButton);
 
-  wrap.appendChild(img);
+        wrap.style.cursor = "pointer";
 
-  wrap.addEventListener("click", () => {
-    const overlay = document.createElement("div");
-    overlay.className = "video-overlay";
+        wrap.addEventListener("click", () => {
+          const overlay = document.createElement("div");
+          overlay.className = "video-overlay";
 
-    overlay.innerHTML = `
-      <button class="video-close">✕</button>
-      <iframe
-        src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0"
-        allow="autoplay; encrypted-media; picture-in-picture"
-        allowfullscreen
-      ></iframe>
-    `;
+          const closeButton = document.createElement("button");
+          closeButton.className = "video-close";
+          closeButton.type = "button";
+          closeButton.textContent = "✕";
+          closeButton.setAttribute("aria-label", "Luk video");
 
-    overlay.querySelector(".video-close").onclick = () => overlay.remove();
+          const iframe = document.createElement("iframe");
+          iframe.src =
+            `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`;
+          iframe.title = data.title;
+          iframe.allow =
+            "autoplay; encrypted-media; picture-in-picture; fullscreen";
+          iframe.allowFullscreen = true;
 
-    overlay.addEventListener("click", (e) => {
-      if (e.target === overlay) overlay.remove();
-    });
+          function closePlayer() {
+            iframe.src = "";
+            overlay.remove();
+            document.removeEventListener("keydown", onKeyDown);
+          }
 
-    document.body.appendChild(overlay);
-  });
+          function onKeyDown(event) {
+            if (event.key === "Escape") closePlayer();
+          }
 
-} else {
-  const img = document.createElement("img");
-  img.src = src;
-  img.alt = data.title;
-  wrap.appendChild(img);
-}
+          closeButton.addEventListener("click", closePlayer);
 
+          overlay.addEventListener("click", event => {
+            if (event.target === overlay) closePlayer();
+          });
 
-        wrap.appendChild(video);
+          document.addEventListener("keydown", onKeyDown);
+          overlay.append(closeButton, iframe);
+          document.body.appendChild(overlay);
+        });
       } else {
         const img = document.createElement("img");
         img.src = src;
         img.alt = data.title;
+        img.loading = "lazy";
         wrap.appendChild(img);
       }
 
