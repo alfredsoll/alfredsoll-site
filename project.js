@@ -89,9 +89,10 @@ const projects = {
     title: "Videoredigering",
     meta: "Video Editing",
     desc: "Et udvalg af mine redigeringsprojekter.",
-    hero: "editing/thumbnails/edit1.jpg",
+    hero: "billeder/editing.png",
     images: [
       "editing/videos/alfredsolldk.mp4"
+      
     ]
   }
 };
