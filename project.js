@@ -125,27 +125,50 @@ if (!type || !projects[type]) {
       const wrap = document.createElement("div");
       wrap.className = "img-wrap";
 
-      if (type === "editing" && src.toLowerCase().endsWith(".mp4")) {
-        const video = document.createElement("video");
-        video.src = "/" + src.replace(/^\/+/, "");
-        video.poster = "/editing/thumbnails/edit1.jpg";
-        video.muted = true;
-        video.loop = true;
-        video.playsInline = true;
-        video.preload = "auto";
-        video.controls = true;
+      
+if (type === "editing" && src.startsWith("youtube:")) {
+  const videoId = src.replace("youtube:", "");
 
-        video.addEventListener("loadeddata", () => {
-          video.currentTime = 0;
-        }, { once: true });
+  const img = document.createElement("img");
+  img.src = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+  img.alt = "YouTube preview";
 
-        wrap.addEventListener("click", () => {
-          if (video.paused) {
-            video.play().catch(() => {});
-          } else {
-            video.pause();
-          }
-        });
+  // Fallback hvis maxres ikke findes
+  img.onerror = () => {
+    img.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+  };
+
+  wrap.appendChild(img);
+
+  wrap.addEventListener("click", () => {
+    const overlay = document.createElement("div");
+    overlay.className = "video-overlay";
+
+    overlay.innerHTML = `
+      <button class="video-close">✕</button>
+      <iframe
+        src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    `;
+
+    overlay.querySelector(".video-close").onclick = () => overlay.remove();
+
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) overlay.remove();
+    });
+
+    document.body.appendChild(overlay);
+  });
+
+} else {
+  const img = document.createElement("img");
+  img.src = src;
+  img.alt = data.title;
+  wrap.appendChild(img);
+}
+
 
         wrap.appendChild(video);
       } else {
