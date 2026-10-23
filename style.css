@@ -2002,3 +2002,30 @@ display:none;
   object-fit: cover;
   object-position: center;
 }
+.img-wrap.youtube-wrap {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #000;
+}
+
+.img-wrap.youtube-wrap > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.2s ease;
+}
+
+.img-wrap.youtube-wrap.is-playing > img {
+  opacity: 0;
+}
+
+.img-wrap.youtube-wrap iframe.youtube-hover-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
