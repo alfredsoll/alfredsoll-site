@@ -130,6 +130,10 @@ if (!type || !projects[type]) {
 
         const img = document.createElement("img");
         img.src = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+        img.onerror = () => {
+          img.onerror = null;
+          img.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+        };
         img.alt = data.title;
         img.loading = "lazy";
         wrap.classList.add("youtube-wrap");
