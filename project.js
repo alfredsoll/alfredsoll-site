@@ -92,6 +92,7 @@ const projects = {
     hero: "billeder/editing.png",
     images: [
       "youtube:C2MUuaK8dR8"
+      "youtube:qPvyxJdKbxA"
     ]
   }
 };
