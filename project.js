@@ -131,47 +131,17 @@ if (!type || !projects[type]) {
         img.src = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
         img.alt = data.title;
         img.loading = "lazy";
-
-        // Fallback, hvis thumbnailen i høj opløsning mangler
-        img.onerror = () => {
-          img.onerror = null;
-          img.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-        };
-
         wrap.classList.add("youtube-wrap");
-        wrap.style.cursor = "pointer";
         wrap.appendChild(img);
 
-        // Start lydløs afspilning ved hover
-        wrap.addEventListener("mouseenter", () => {
-          if (wrap.querySelector("iframe")) return;
+        // Vis en play-knap oven på previewet
+        const playButton = document.createElement("div");
+        playButton.className = "youtube-play-button";
+        playButton.textContent = "▶";
+        wrap.appendChild(playButton);
 
-          const iframe = document.createElement("iframe");
+        wrap.style.cursor = "pointer";
 
-          iframe.className = "youtube-hover-video";
-          iframe.src =
-            `https://www.youtube-nocookie.com/embed/${videoId}` +
-            "?autoplay=1&mute=1&controls=0&loop=1" +
-            `&playlist=${videoId}&playsinline=1&rel=0`;
-
-          iframe.title = `${data.title} preview`;
-          iframe.allow = "autoplay; encrypted-media; picture-in-picture";
-          iframe.setAttribute("tabindex", "-1");
-
-          wrap.appendChild(iframe);
-          wrap.classList.add("is-playing");
-        });
-
-        // Stop afspilning, når musen forlader thumbnailen
-        wrap.addEventListener("mouseleave", () => {
-          const iframe = wrap.querySelector("iframe");
-
-          if (iframe) iframe.remove();
-
-          wrap.classList.remove("is-playing");
-        });
-
-        // Klik åbner stadig videoen i det store overlay
         wrap.addEventListener("click", () => {
           const overlay = document.createElement("div");
           overlay.className = "video-overlay";
